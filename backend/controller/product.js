@@ -3,7 +3,7 @@
 */
 
 // 
-import {getProducts,getProduct,addProduct,updateProduct,deleteProduct,deleteProducts} from "../model/productDatabase.js ";
+import {getProducts,getProduct,addProduct,updateProduct,deleteProduct,deleteProducts} from "../model/productDatabase.js";
 
 // 
 const productController =  {
