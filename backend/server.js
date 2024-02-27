@@ -27,6 +27,7 @@ app.use(express.static("views"));
 
 app.use('/',userRouter)
 app.use('/:id',userRouter)
+app.use('/add',userRouter)
 app.use('/update/:id',userRouter)
 app.use('/delete/:id',userRouter)
 app.use('/user/deleteAll',userRouter)
