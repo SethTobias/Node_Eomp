@@ -22,30 +22,12 @@ config();
 import { pool } from "../config/config.js";
 
 /*
-                                                        --Get/Retrieval Queries--
+                                                        --User Functions--
 */
 
-// Retrieving all the data from the user table in mysql database
-const getUsers = async () => {
-  // Setting a variable to save the result of the prepared statement
-  const [allUsers] = await pool.query(`
-    SELECT userID,firstName,lastName,userAge,gender,userRole,emailAdd,userProfile FROM userTable
-    `); // Prepared Statement: retrieves all users
-  return allUsers;
-};
-
-// Retrieving a single record by its id from the user table in mysql database
-const getUserAdmin = async (userID) => {
-  // Setting a variable to save the result of the prepared statement
-  const [singleUser] = await pool.query(
-    `
-    SELECT * FROM userTable WHERE userID = ?
-    `,
-    [userID]
-  ); // Prepared Statement: retrieves a single user by its ID
-  return singleUser;
-};
-
+/*
+Get/Retrieval Queries
+*/
 //
 const getUser = async (userProfile, userPass) => {
   // Setting a variable to save the result of the prepared statement
@@ -57,13 +39,9 @@ const getUser = async (userProfile, userPass) => {
   ); // Prepared Statement: retrieves a single user by its ID
   return singleUser;
 };
-
 /*
-                                                        --Add Queries--
+Add Queries
 */
-
-// Admin
-
 // Adding a new user to the table of the mysql database
 const addUser = async (
   firstName,
@@ -85,49 +63,9 @@ const addUser = async (
   //
   return newUser.insertId;
 };
-
-// User
-
-//
-
 /*
-                                                        --Edit/Update Queries--
+Edit/Update Queries
 */
-
-// Admin
-
-//
-const updateUserAdmin = async (
-  firstName,
-  lastName,
-  userAge,
-  gender,
-  emailAdd,
-  userProfile,
-  userPass,
-  userID
-) => {
-  //
-  const [alteredUser] = await pool.query(
-    ` 
-    UPDATE userTable SET firstName=?,lastName=?,userAge=?,gender=?,emailAdd=?,userProfile=?,userPass=? WHERE (userID=?)
-    `,
-    [
-      firstName,
-      lastName,
-      userAge,
-      gender,
-      emailAdd,
-      userProfile,
-      userPass,
-      userID,
-    ]
-  ); //
-  return alteredUser;
-};
-
-// User
-
 // Adding a
 const updateUser = async (
   firstName,
@@ -161,43 +99,9 @@ const updateUser = async (
   ); //
   return alteredUser;
 };
-
 /*
-                                                        --Delete Queries--
+Delete Queries
 */
-
-// Admin Functions
-// Removing all users from the table of the mysql database
-const deleteUsersAdmin = async () => {
-  //
-  await pool.query(`TRUNCATE userTable`); // Prepared Statement:
-  const [allUsers] = await pool.query(`
-  SELECT userID,firstName,lastName,userAge,gender,emailAdd,userProfile FROM userTable
-  `); // Prepared Statement: retrieves all users
-  return allUsers;
-};
-
-// Removing a user from the table of the mysql database
-const deleteUserAdmin = async (userID, userProfile) => {
-  //
-  const [deletedUser] = await pool.query(
-    `
-    SELECT userID,firstName,lastName,userAge,gender,emailAdd,userProfile FROM userTable WHERE (userID = ?) AND (userProfile = ?)
-    `,
-    [userID, userProfile]
-  ); // Prepared Statement:
-
-  //
-  await pool.query(
-    `
-    DELETE FROM userTable WHERE (userID = ?) AND  (userProfile = ?)
-    `,
-    [userID, userProfile]
-  ); // Prepared Statement:
-  return deletedUser;
-};
-
-// User Functions
 // Removing a user from the table of the mysql database
 const deleteUser = async (userProfile, emailAdd, userPass) => {
   //
@@ -218,30 +122,115 @@ const deleteUser = async (userProfile, emailAdd, userPass) => {
   return deletedUser;
 };
 
+/*
+                                                        --Admin Functions--
+*/
+
+/*
+Get/Retrieval Queries
+*/
+// Retrieving all the data from the user table in mysql database
+const adminGetUsers = async () => {
+  // Setting a variable to save the result of the prepared statement
+  const [allUsers] = await pool.query(`
+    SELECT * FROM userTable
+    `); // Prepared Statement: retrieves all users
+  return allUsers;
+};
+// Retrieving a single record by its id from the user table in mysql database
+const adminGetUser = async (userID) => {
+  // Setting a variable to save the result of the prepared statement
+  const [singleUser] = await pool.query(
+    `
+    SELECT * FROM userTable WHERE userID = ?
+    `,
+    [userID]
+  ); // Prepared Statement: retrieves a single user by its ID
+  return singleUser;
+};
+/*
+Add Queries
+*/
+
+/*
+Edit/Update Queries
+*/
+//
+const adminUpdateUser = async (
+  firstName,
+  lastName,
+  userAge,
+  gender,
+  userRole,
+  emailAdd,
+  userProfile,
+  userPass,
+  userID
+) => {
+  //
+  const [alteredUser] = await pool.query(
+    ` 
+    UPDATE userTable SET firstName=?,lastName=?,userAge=?,gender=?,userRole=?,emailAdd=?,userProfile=?,userPass=? WHERE (userID=?)
+    `,
+    [
+      firstName,
+      lastName,
+      userAge,
+      gender,
+      userRole,
+      emailAdd,
+      userProfile,
+      userPass,
+      userID,
+    ]
+  ); //
+  return alteredUser;
+};
+/*
+Delete Queries
+*/
+// Removing a user from the table of the mysql database
+const adminDeleteUser = async (userID) => {
+  //
+  const [deletedUser] = await pool.query(
+    `
+    SELECT * FROM userTable WHERE (userID = ?)
+    `,
+    [userID]
+  ); // Prepared Statement:
+
+  //
+  await pool.query(
+    `
+    DELETE FROM userTable WHERE (userID = ?)
+    `,
+    [userID]
+  ); // Prepared Statement:
+  return deletedUser;
+};
+// Removing all users from the table of the mysql database
+const adminDeleteUsers = async () => {
+  //
+  await pool.query(`TRUNCATE userTable`); // Prepared Statement:
+  const [allUsers] = await pool.query(`
+  SELECT * FROM userTable
+  `); // Prepared Statement: retrieves all users
+  return allUsers;
+};
+
 // Test code
 // console.log(await getUsers());
-// console.log(await getUserAdmin("4"));
-// console.log(await getUser('Rain','1234'));
-// console.log(await updateUserAdmin('Mark','24','1'));
-// console.log(await updateUser('New','Apple','30','Female','seth@add','Rain','1234','789','Rain'));
-// console.log(await deleteUsersAdmin())
-// console.log(await deleteUser('Rin','email@add','1234'))
-// console.log(await deleteUserAdmin('1','Rain'))
-// console.log(await addUser('Seth','Tobias',20,'Male','email@add','1234','Rin'));
-// console.log(await addUser('Seth','Tobias',20,'Male','email@add','1234','Rain'));
-// console.log(await getUsers());
 
-// firstName,lastName,userAge,gender,emailAdd,userPass,userProfile
 
 // Exporting the function expressions for later use in the server.js and/or index.js
 export {
-  getUsers,
   getUser,
   addUser,
   updateUser,
   deleteUser,
-  getUserAdmin,
-  updateUserAdmin,
-  deleteUserAdmin,
-  deleteUsersAdmin,
+  adminGetUser,
+  adminGetUsers,
+  adminUpdateUser,
+  adminDeleteUser,
+  adminDeleteUsers
 };

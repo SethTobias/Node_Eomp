@@ -139,19 +139,6 @@ const deleteProducts = async () => {
 // console.log(await getProducts());
 // console.log(await getProduct('1'));
 
-// console.log(await updateProduct('Audi','8','100000','danger','htpps','1'));
-// console.log(await addProduct('VroomVroom','4','1200','fast','htpp//'));
-// console.log(await addProduct('Bugatti','2','12200','big','htpp//'));
-// console.log(await updateProduct('Audi','8','100000','danger','htpps','1'));
-// console.log(await addProduct('VroomVroom','4','1200','fast','htpp//'));
-// console.log(await addProduct('Bugatti','2','12200','big','htpp//'));
-// console.log(await updateProduct('Audi','8','100000','danger','htpps','1'));
-// console.log(await addProduct('VroomVroom','4','1200','fast','htpp//'));
-// console.log(await addProduct('Bugatti','2','12200','big','htpp//'));
-
-// console.log(await deleteProduct('3'))
-// console.log(await deleteProducts())
-
 // Exporting the function expressions for later use in the server.js and/or index.js
 export {
   getProducts,

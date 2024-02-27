@@ -25,8 +25,17 @@ app.use(cors());
 //
 app.use(express.static("views"));
 
-//
 app.use('/',userRouter)
+app.use('/:id',userRouter)
+app.use('/update/:id',userRouter)
+app.use('/delete/:id',userRouter)
+app.use('/user/deleteAll',userRouter)
+
+
+// app.use('/',userRouter)
+// app.use('/',userRouter)
+// app.use('/',userRouter)
+// app.use('/',userRouter)
 //
 app.use('/',productRouter); //
 app.use('/:id',productRouter); //

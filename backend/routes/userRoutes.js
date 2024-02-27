@@ -10,25 +10,23 @@ import {userController} from "../controller/user.js";
 const router = express.Router();
 
 //
-router.route("/user").get(userController.getUsers);
+router.route("/userUser/:name").get(userController.getUser);
 //
-router.route("/user/:name").get(userController.getUser);
+router.route("/user/addUser").post(userController.addUser);
 //
-router.route("/user/add").post(userController.addUser);
+router.route("/user/updateUser/:name").patch(userController.updateUser);
 //
-router.route("/user/update/:name").post(userController.updateUser);
+router.route("/user/deleteUser/:id").delete(userController.deleteUser);
 //
-router.route("/user/delete/:id").post(userController.deleteUser);
+router.route("/user").get(userController.adminGetUsers)
 //
-router.route("/user/:id").post(userController.getUserAdmin);
+router.route("/user/:id").get(userController.adminGetUser);
 //
-router.route("/user/update/:id").post(userController.updateUserAdmin);
+router.route("/user/update/:id").patch(userController.adminUpdateUser);
 //
-router.route("/user/delete/:id").post(userController.deleteUserAdmin
-    );
+router.route("/user/delete/:id").delete(userController.adminDeleteUser);
 //
-router.route("/user/deleteAll").post(userController.deleteUsersAdmin
-    );
+router.route("/user/deleteAll").delete(userController.adminDeleteUsers);
 
 //
 export default router;

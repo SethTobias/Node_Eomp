@@ -1,28 +1,18 @@
 //
 import {
-  getUsers,
   getUser,
   addUser,
   updateUser,
   deleteUser,
-  getUserAdmin,
-  updateUserAdmin,
-  deleteUserAdmin,
-  deleteUsersAdmin,
+  adminGetUser,
+  adminGetUsers,
+  adminUpdateUser,
+  adminDeleteUser,
+  adminDeleteUsers
 } from "../model/userDatabase.js";
 
 //
 const userController = {
-  getUsers: async (req, res) => {
-    try {
-      res.send(await getUsers());
-    }catch(e) {
-      res.json({
-        status: res.statusCode,
-        msg: "An error ocurred when retrieving the data."
-      })
-    }
-  },
   getUser: async (req, res) => {
     const { userProfile, userPass } = req.params.body;
     res.send(await getUser(userProfile, userPass));
@@ -47,21 +37,24 @@ const userController = {
     const { userProfile, emailAdd, userPass } = req.params.body;
     res.send(await deleteUser(userProfile, emailAdd, userPass));
   },
-  getUserAdmin: async (req, res) => {
-    const userID = +req.params.id;
-    res.send(await getUserAdmin(userID));
+  adminGetUsers: async (req, res) => {
+    res.send(await adminGetUsers());
   },
-  updateUserAdmin: async (req, res) => {
+  adminGetUser: async (req, res) => {
+    const userID = +req.params.id;
+    res.send(await adminGetUser(userID));
+  },
+  adminUpdateUser: async (req, res) => {
     const alteredData = req.body;
     const userID = +req.params.id;
-    res.send(await updateUserAdmin(alteredData, userID));
+    res.send(await adminUpdateUser(alteredData, userID));
   },
-  deleteUserAdmin: async (req, res) => {
+  adminDeleteUser: async (req, res) => {
     const { userID, userProfile } = req.params.body;
-    res.send(await deleteUserAdmin(userID, userProfile));
+    res.send(await adminDeleteUser(userID, userProfile));
   },
-  deleteUsersAdmin: async (req, res) => {
-    res.send(await deleteUsersAdmin());
+  adminDeleteUsers: async (req, res) => {
+    res.send(await adminDeleteUsers());
   },
 };
 
