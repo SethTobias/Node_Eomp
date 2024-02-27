@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            /*  */  
+            text-align: center; /* */
+            color: blue; /*  */
+        }
+        table,td {
+            /*  */
+            border: 2px solid black;
+            /*  */
+            margin: 0 auto;
+        }
+        td {
+            font-size: clamp( 1rem,calc(5vw + .5rem),1.5rem); /* */
+        }
+    :is(.header,.footer) {
+        /*  */
+        font-size: clamp( 1.5rem,calc(10vw + .5rem),3rem); /* */
+    }
+    
+    </style>
+</head>
+<body>
+    <table>
+            <tr>
+                <td class="header" colspan="3">Static:</td>
+            </tr>
+            <tr>
+                <td>HTTP Methods</td>
+                <td>Path</td>
+                <td>Description</td>
+            </tr>
+        <tbody>
+            
+            <tr>
+                <td>GET</td>
+                <td>/ (Home Page)</td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <td class="header" colspan="3">Users:</td>
+            </tr>
+            <tr>
+                <td>HTTP Methods</td>
+                <td>Path</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users/:id</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/users/register</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>PATCH/PUT</td>
+                <td>/users/update/:id</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/users/delete/:id</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td class="header" colspan="3">Product:</td>
+            </tr>
+            <tr>
+                <td>HTTP Methods</td>
+                <td>Path</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/products</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/products/:id</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/product/addProduct</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>PUT/PATCH</td>
+                <td>/products/update/:id</td>
+                <td>asdfghjkl</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/products/delete/:id</td>
+                <td>asdfghjkl</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
