@@ -28,22 +28,10 @@ const userController = {
   addUser: async (req, res) => {
     try {
       const {
-        firstName,
-        lastName,
-        userAge,
-        gender,
-        emailAdd,
-        userPass,
-        userProfile,
+        firstName,lastName,userAge,gender,emailAdd,userPass,userProfile,
       } = req.body;
       const newUser = await addUser(
-        firstName,
-        lastName,
-        userAge,
-        gender,
-        emailAdd,
-        userPass,
-        userProfile
+        firstName,lastName,userAge,gender,emailAdd,userPass,userProfile
       );
       res.status(200).json(newUser);
     } catch (e) {
@@ -156,7 +144,7 @@ const userController = {
   },
   adminDeleteUser: async (req, res) => {
     try {
-      const { userID} = +req.params.body;
+      const userID = +req.params.id;
       const deletedUser = await adminDeleteUser(userID);
       res.status(200).json(deletedUser);
     } catch (e) {
