@@ -70,8 +70,18 @@ const productController = {
   updateProduct: async (req, res) => {
     try {
       // Extract product details and ID from the request body and parameters
-      const { prodName, quantity, amount, category, prodUrl } = req.body;
-      const productID = req.params.id;
+      const productID = +req.params.id;
+      const [product] = await getProduct(productID)
+      console.log(product)
+      console.log(productID)
+      let { prodName, quantity, amount, category, prodUrl } =req.body;
+      console.log(prodName, quantity, amount, category, prodUrl)
+      prodName ? prodName=prodName: {prodName}=product
+      console.log(product)
+      quantity ? quantity= quantity: {quantity}=product
+      amount ? amount= amount: {amount}=product
+      category ? category= category: {category}=product
+      prodUrl ? prodUrl= prodUrl: {prodUrl}=product
       // Update the existing product in the database
       const alteredProduct = await updateProduct(prodName, quantity, amount, category, prodUrl, productID);
       // Respond with the updated product in JSON format
