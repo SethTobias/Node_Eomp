@@ -35,7 +35,7 @@ app.use(cors());
 // Configuration object for CORS (Cross-Origin Resource Sharing)
 const corsOptions = {
   // List of allowed origins that can access your resources
-  origin: ['http://localhost:2701', 'https://node-eomp-api.onrender.com/'],
+  origin: ['http://localhost:8080', 'https://node-eomp-api.onrender.com/'],
   
   // List of allowed HTTP methods for cross-origin requests
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
