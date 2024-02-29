@@ -4,79 +4,65 @@ Contains the logical operations between the Database and Node.js:
 Specifically the Product Table
 */
 
-// prodID
-// prodName
-// quantity
-// amount
-// category
-// prodUrl
-
-//
+// Load environment variables from the '.env' file into process.env
 import { config } from "dotenv";
-//
 config();
-//
+
+// Importing the MySQL connection pool from the 'config' module
 import { pool } from "../config/config.js";
 
 /*
-                                                        --Get/Retrieval Queries--
+  --Get/Retrieval Queries--
 */
 
-// Retrieving all the data from the Products table in mysql database
+// Retrieve all products from the productTable in the MySQL database
 const getProducts = async () => {
-  // Setting a variable to save the result of the prepared statement
+  // Execute a SELECT query to retrieve all products
   const [allProducts] = await pool.query(`
     SELECT * FROM productTable
-    `); // Prepared Statement: retrieves all Products
+  `);
+  // Return the result of the query
   return allProducts;
 };
 
-// Retrieving a single record by its id from the Products table in mysql database
+// Retrieve a single product by its ID from the productTable in the MySQL database
 const getProduct = async (prodID) => {
-  // Setting a variable to save the result of the prepared statement
-  const [singleProduct] = await pool.query(
-    `
-    SELECT  * FROM productTable WHERE prodID = ?
-    `,
-    [prodID]
-  ); // Prepared Statement: retrieves a single Products by its ID
+  // Execute a SELECT query to retrieve a single product by its ID
+  const [singleProduct] = await pool.query(`
+    SELECT * FROM productTable WHERE prodID = ?
+  `, [prodID]);
+  // Return the result of the query
   return singleProduct;
 };
 
-//
-
 /*
-                                                        --Add Queries--
+  --Add Queries--
 */
 
 // Admin
 
-// Adding a new Products to the table of the mysql database
+// Add a new product to the productTable in the MySQL database
 const addProduct = async (prodName, quantity, amount, category, prodUrl) => {
-  //
-  const [newProduct] = await pool.query(
-    // (  )  (?)
-    `
+  // Execute an INSERT query to add a new product
+  const [newProduct] = await pool.query(`
     INSERT INTO productTable (
-        prodName,
-        quantity,
-        amount,
-        category,
-        prodUrl) VALUES (?,?,?,?,?) 
-    `,
-    [prodName, quantity, amount, category, prodUrl] //
-  ); // Prepared Statement:
-  //
+      prodName,
+      quantity,
+      amount,
+      category,
+      prodUrl) VALUES (?,?,?,?,?) 
+  `, [prodName, quantity, amount, category, prodUrl]);
+  // Return the ID of the newly added product
   return newProduct.insertId;
 };
 
 /*
-                                                        --Edit/Update Queries--
+  --Edit/Update Queries--
 */
 
 // Admin
 
-//
+// Update an existing product in the productTable in the MySQL database
 const updateProduct = async (
   prodName,
   quantity,
@@ -85,53 +71,47 @@ const updateProduct = async (
   prodUrl,
   prodID
 ) => {
-  //
-  const [alteredProduct] = await pool.query(
-    ` 
+  // Execute an UPDATE query to modify an existing product
+  const [alteredProduct] = await pool.query(`
     UPDATE productTable SET prodName=?,quantity=?,amount=?,category=?,prodUrl=? WHERE (prodID=?)
-    `,
-    [prodName, quantity, amount, category, prodUrl, prodID]
-  ); //
+  `, [prodName, quantity, amount, category, prodUrl, prodID]);
+  // Return the result of the query
   return alteredProduct;
 };
 
 /*
-                                                        --Delete Queries--
+  --Delete Queries--
 */
 
 // Admin Functions
 
-// Removing a Products from the table of the mysql database
+// Remove a product from the productTable in the MySQL database
 const deleteProduct = async (prodID) => {
-  //
-  const [deletedProduct] = await pool.query(
-    `
+  // Execute a SELECT query to retrieve information about the product before deletion
+  const [deletedProduct] = await pool.query(`
     SELECT * FROM productTable WHERE (prodID = ?)
-    `,
-    [prodID]
-  ); // Prepared Statement:
-
-  //
-  await pool.query(
-    `
+  `, [prodID]);
+  // Execute a DELETE query to remove the product
+  await pool.query(`
     DELETE FROM productTable WHERE (prodID = ?)
-    `,
-    [prodID]
-  ); // Prepared Statement:
+  `, [prodID]);
+  // Return the information about the deleted product
   return deletedProduct;
 };
 
-// Removing all Products from the table of the mysql database
+// Remove all products from the productTable in the MySQL database
 const deleteProducts = async () => {
-  await pool.query(`TRUNCATE productTable`); // Prepared Statement:
-  //
+  // Execute a TRUNCATE query to delete all records from the productTable
+  await pool.query(`TRUNCATE productTable`);
+  // Execute a SELECT query to retrieve information about all products after deletion
   const [allProducts] = await pool.query(`
     SELECT prodName,
     quantity,
     amount,
     category,
     prodUrl, prodID FROM productTable
-    `); // Prepared Statement: retrieves all Products
+  `);
+  // Return the information about all products
   return allProducts;
 };
 
@@ -139,7 +119,7 @@ const deleteProducts = async () => {
 // console.log(await getProducts());
 // console.log(await getProduct('1'));
 
-// Exporting the function expressions for later use in the server.js and/or index.js
+// Export function expressions for later use in our product.js controller
 export {
   getProducts,
   getProduct,

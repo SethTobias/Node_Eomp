@@ -1,3 +1,7 @@
+File to store all default data that is to be displayed in the site. 
+____________________________________________________________________
+Product data:
+____________________________________________________________________
 {
 "prodName":"1962 Ferrari 250 GTO Scorpion GTZR Replica",
 "quantity":12,
