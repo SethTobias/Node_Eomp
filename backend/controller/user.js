@@ -79,7 +79,7 @@ const userController = {
   updateUser: async (req, res) => {
     try {
       // Destructuring user details from request body
-      const {
+      let {
         firstName, lastName, userAge, gender, userRole, emailAdd,
         userNewProfile, userNewPass, userProfile, userPass,
       } = req.body;

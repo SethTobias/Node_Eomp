@@ -73,9 +73,7 @@ const productController = {
       const productID = +req.params.id;
       const [product] = await getProduct(productID)
       console.log(product)
-      console.log(productID)
       let { prodName, quantity, amount, category, prodUrl } =req.body;
-      console.log(prodName, quantity, amount, category, prodUrl)
       prodName ? prodName=prodName: {prodName}=product
       console.log(product)
       quantity ? quantity= quantity: {quantity}=product

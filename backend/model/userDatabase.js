@@ -62,12 +62,11 @@ const updateUser = async (
   emailAdd,
   userNewProfile,
   userNewPass,
-  userProfile,
-  userPass
+  userProfile
 ) => {
   const [alteredUser] = await pool.query(
     ` 
-    UPDATE userTable SET firstName=?, lastName=?, userAge=?, gender=?, userRole=?, emailAdd=?, userProfile=?, userPass=? WHERE (userProfile = ?) AND (userPass = ?) 
+    UPDATE userTable SET firstName=?, lastName=?, userAge=?, gender=?, userRole=?, emailAdd=?, userProfile=?, userPass=? WHERE (userProfile = ?)
     `,
     [
       firstName,
@@ -79,7 +78,6 @@ const updateUser = async (
       userNewProfile,
       userNewPass,
       userProfile,
-      userPass,
     ]
   );
   return alteredUser;

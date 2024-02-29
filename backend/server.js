@@ -32,6 +32,21 @@ const app = express();
 app.use(express.json());
 // Defining the use of the cors dependency.
 app.use(cors());
+// Configuration object for CORS (Cross-Origin Resource Sharing)
+const corsOptions = {
+  // List of allowed origins that can access your resources
+  origin: ['http://localhost:8080', 'https://nodejseomp-1.onrender.com'],
+  
+  // List of allowed HTTP methods for cross-origin requests
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+
+  // List of allowed headers in the actual request
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+// Applying CORS middleware to the Express app with the specified options
+app.use(cors(corsOptions));
+
 
 
 // Use of express to define a static page which will store the specific purpose of each of our paths.
