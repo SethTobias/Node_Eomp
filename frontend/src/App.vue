@@ -1,10 +1,24 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <navbar />
+  <router-view />
+  <footerComp />
+  <!-- <videoPlayer/> -->
+  <spinner />
 </template>
+
+<script>
+import navbar from "./components/navbar.vue";
+import footerComp from "./components/footerComp.vue";
+// import videoPlayer from './components/videoPlayer.vue';
+
+export default {
+  components: {
+    navbar,
+    footerComp,
+    // videoPlayer
+  },
+};
+</script>
 
 <style>
 #app {
