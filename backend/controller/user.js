@@ -156,14 +156,20 @@ const userController = {
   // Function to update a user by ID (admin)
   adminUpdateUser: async (req, res) => {
     try {
-      // Destructuring user details from request body
-      const {
-        firstName, lastName, userAge, gender, userRole, emailAdd,
-        userProfile, userPass,
-      } = req.body;
-      // Extracting user ID from request parameters
       const userID = +req.params.id;
-      // Updating a specific user by ID (admin)
+      const [user] = await adminGetUser(userID)
+    
+      let { firstName, lastName, userAge, gender, userRole, emailAdd,
+        userProfile, userPass } =req.body;
+      firstName ? firstName=firstName: {firstName}=user
+      lastName ? lastName= lastName: {lastName}=user
+      userAge ? userAge= userAge: {userAge}=user
+      gender ? gender= gender: {gender}=user
+      userRole ? userRole= userRole: {userRole}=user
+      emailAdd ? emailAdd= emailAdd: {emailAdd}=user
+      userProfile ? userProfile= userProfile: {userProfile}=user
+      userPass ? userPass= userPass: {userPass}=user
+      // Update the existing user in the database
       const alteredUser = await adminUpdateUser(
         firstName, lastName, userAge, gender, userRole, emailAdd,
         userProfile, userPass, userID
