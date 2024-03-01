@@ -62,6 +62,10 @@ export default createStore({
       await axios.post(baseUrl+'/user/add',newUser);
       window.location.reload()
       console.log(data)
+    },
+    async updateUser({commit},update){
+      await axios.patch(baseUrl+'/user/update/'+update.id,update)
+      window.location.reload()
     }
   },
   modules: {

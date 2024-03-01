@@ -3,8 +3,7 @@
     <div id="homeImage">
     <h1 id="subTitle">BUY NOW</h1>
     <h5 id="caption">FAST, AFFORDABLE AND CONVENIENT. GET YOUR DREAM CAR TODAY!</h5>
-    <button id="homeButt"><a href="/cars" style="text-decoration: none; color: gold;">VIEW CARS ▹
-      </a></button>
+    <button id="homeButt">VIEW CARS ▹</button>
     </div>
   </body>
   

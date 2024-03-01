@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <footer id="foot">Kwagga{{ currentYear }}</footer>
+        <footer id="foot">@Copy Rights RReserved {{ currentYear }}</footer>
     </div>
 
 </template>
@@ -10,11 +10,11 @@ export default {
     name: 'footer',
     data(){
            return{
-            currentYear:""
+            currentYear:  null,
            };
     },
     mounted(){
-            // thisgetData();
+            getData();
     },
     methods:{
             getData(){

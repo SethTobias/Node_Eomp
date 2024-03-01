@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar fixed-top">
-        <div id="navB" class="container-fluid" style="margin-bottom: 100px;">
+        <div id="navB" class="container-fluid">
 
           <a class="navbar-brand" href="#"><img id="Logo" src="https://i.postimg.cc/zGcFXSbL/Logo.png"></a>
           <h1 id="Navhead" class="navHead active"><ul class="nav justify-content-center">

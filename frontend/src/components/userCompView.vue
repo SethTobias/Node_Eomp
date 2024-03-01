@@ -14,9 +14,10 @@
                 <th style="color: white; background-color: gold;">Last Name</th>
                 <th style="color: white; background-color: indigo;">Age</th>
                 <th style="color: white; background-color: gold;">Gender</th>
-                <th style="color: white; background-color: indigo;">Email Address</th>
-                <th style="color: white; background-color: gold;">Password</th>
-                <th style="color: white; background-color: indigo;">Profile</th>
+                <th style="color: white; background-color: indigo;">Role</th>
+                <th style="color: white; background-color: gold;">Email Address</th>
+                <th style="color: white; background-color: indigo;">Password</th>
+                <th style="color: white; background-color: gold;">Profile</th>
               
             </tr>
             
@@ -25,13 +26,58 @@
                 <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.firstName}}</td>
                 <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.lastName}}</td>
                 <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.userAge}}</td>
-                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.gender}}</td>
-                <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.userRole}}</td>
-                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.emailAdd}}</td>
-                <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.userPass}}</td>
-                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.userProfile}}</td>
-                <td><button @click="deleteUser(item.userID)" id="deleteButt">Delete</button></td>
-                <!-- <td><button @click="" id="deleteButt">Delete</button></td> -->
+                <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.gender}}</td>
+                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.userRole}}</td>
+                <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.emailAdd}}</td>
+                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.userPass}}</td>
+                <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.userProfile}}</td>
+                <td><button @click="deleteUser(item.userID)" id="deleteButt">Delete</button></td> 
+
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#exampleModal4-' + item.userID" id="editButt">
+                  Edit
+                </button></td>  
+
+                <div class="modal fade" :id="'exampleModal4-' + item.userID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div id="modalBody" class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">EDIT USER</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+                <p id= "modalP">First Name</p>
+                <input id="input1" placeholder="First Name" type="text" class="form-control" v-model="firstName" required>
+
+                <p id= "modalP">Last Name</p>
+                <input id="input2" placeholder="Last Name" type="text" class="form-control" v-model="lastName" required>
+
+                <p id= "modalP">User Age</p>
+                <input id="input3" placeholder="User Age" type="number" class="form-control" v-model="userAge" required>
+
+                <p id= "modalP">Gender</p>
+                <input id="input3" placeholder="gender" type="text" class="form-control" v-model="gender" required>
+
+                <p id= "modalP">User Role</p>
+                <input id="input4" placeholder="User Role" type="text" class="form-control" v-model="userRole" required>
+
+                <p id= "modalP">User Email</p>
+                <input id="input4" placeholder="User Email" type="email" class="form-control" v-model="emailAdd" required>
+
+                <p id= "modalP">User Password</p>
+                <input id="input4" placeholder="User Password" type="text" class="form-control" v-model="userPass" required>
+
+                <p id= "modalP">User Profile</p>
+                <input id="input4" placeholder="User Profile" type="text" class="form-control" v-model="userProfile" required>
+      </div>
+      <div id="modalFoot" class="modal-footer">
+        <button id="closeButt" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button @click="updateUser(item.userID)" id="saveButt" type="button" class="btn btn-primary">Save Product</button>
+      </div>
+    </div>
+  </div>
+</div>
+
             </tr>   
         </table>
 
@@ -77,6 +123,49 @@
   </div>
 </div>
 
+<!-- USER MODAL -->
+
+<!-- <div class="modal fade" :id="'exampleModal4-' + item.userID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div id="modalBody" class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">EDIT USER</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+                <p id= "modalP">First Name</p>
+                <input id="input1" placeholder="First Name" type="text" class="form-control" v-model="firstName" required>
+
+                <p id= "modalP">Last Name</p>
+                <input id="input2" placeholder="Last Name" type="text" class="form-control" v-model="lastName" required>
+
+                <p id= "modalP">User Age</p>
+                <input id="input3" placeholder="User Age" type="number" class="form-control" v-model="userAge" required>
+
+                <p id= "modalP">Gender</p>
+                <input id="input3" placeholder="gender" type="text" class="form-control" v-model="gender" required>
+
+                <p id= "modalP">User Role</p>
+                <input id="input4" placeholder="User Role" type="text" class="form-control" v-model="userRole" required>
+
+                <p id= "modalP">User Email</p>
+                <input id="input4" placeholder="User Email" type="email" class="form-control" v-model="emailAdd" required>
+
+                <p id= "modalP">User Password</p>
+                <input id="input4" placeholder="User Password" type="text" class="form-control" v-model="userPass" required>
+
+                <p id= "modalP">User Profile</p>
+                <input id="input4" placeholder="User Profile" type="text" class="form-control" v-model="userProfile" required>
+      </div>
+      <div id="modalFoot" class="modal-footer">
+        <button id="closeButt" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button @click="updateUser(item.userID)" id="saveButt" type="button" class="btn btn-primary">Save Product</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
 </template>
 <script>
 export default {
@@ -98,6 +187,20 @@ export default {
         },
         addUser(){
             this.$store.dispatch('addUser',this.$data)
+        },
+        updateUser(id){
+            let edit = {
+                id:id,
+                firstName:this.firstName,
+                lastName:this.lastName,
+                userAge:this.userAge,
+                gender:this.gender,
+                userRole:this.userRole,
+                emailAdd:this.emailAdd,
+                userPass:this.userPass,
+                userProfile:this.userProfile
+            }
+            this.$store.dispatch('updateUser',edit)
         }
 
     },

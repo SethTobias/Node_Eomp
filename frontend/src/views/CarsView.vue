@@ -1,10 +1,8 @@
 <template>
-<div style="margin-top: 120px; display: flex; flex-wrap:column;">
-
 
 <div v-for="item in $store.state.product" :key="item.id" class="container text-center">
     <div class="row">
-        <div>
+        <div class="col">
           <div>
         <div class="card">
             <div class="card-info">
@@ -18,7 +16,7 @@
         </div>
     </div>
 </div>
-</div>
+
     
 </template>
 <script>
