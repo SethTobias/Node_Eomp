@@ -4,7 +4,8 @@ import axios from 'axios'
  let baseUrl = 'https://node-eomp-api.onrender.com'
 export default createStore({
   state: {
-    product:[]
+    product:[],
+    user: []
   },
   getters: {
   },
@@ -12,6 +13,9 @@ export default createStore({
     setProducts(state, data){
       state.product = data;
     },
+    setUsers(state,data){
+      state.user = data;
+    }
   },
   actions: {
     async getProduct({commit}){
@@ -33,8 +37,31 @@ export default createStore({
       window.location.reload();
     },
     async updateProd({commit},update){
-      await axios.patch(baseUrl+ '/product/update/'+update.id, update)
+      console.log(update);
+      await axios.patch(baseUrl+'/product/update/'+update.id, update)
       window.location.reload();
+    },
+
+    async getUser({commit}){
+      try {
+        const {data} = await axios.get(baseUrl+'/user');
+        console.log(data);
+        commit("setUsers",data);
+      } catch(error){
+        console.error('error getting user')
+      }
+
+    },
+
+    async deleteUser({commit},id){
+      await axios.delete(baseUrl+'/user/delete/'+id)
+      window.location.reload()
+    },
+
+    async addUser({commit}, newUser){
+      await axios.post(baseUrl+'/user/add',newUser);
+      window.location.reload()
+      console.log(data)
     }
   },
   modules: {

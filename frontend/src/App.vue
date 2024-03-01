@@ -1,23 +1,30 @@
 <template>
-  <navbar />
-  <router-view />
-  <footerComp />
-  <!-- <videoPlayer/> -->
-  <spinner />
+
+  <div>
+    <navbar/>
+   <router-view/>
+   <footerComp/>
+   <!-- <videoPlayer/> -->
+   <spinner/>
+  </div>
+    
+   <body>
+  </body>
 </template>
 
 <script>
-import navbar from "./components/navbar.vue";
-import footerComp from "./components/footerComp.vue";
-// import videoPlayer from './components/videoPlayer.vue';
+  import navbar from './components/navbar.vue';
+  import footerComp from './components/footerComp.vue';
+  // import videoPlayer from './components/videoPlayer.vue';
 
-export default {
-  components: {
-    navbar,
-    footerComp,
-    // videoPlayer
-  },
-};
+  export default{
+
+    components:{
+      navbar,
+      footerComp,
+      // videoPlayer
+    }
+  }
 </script>
 
 <style>

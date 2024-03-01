@@ -8,7 +8,7 @@
         <button id="addButt" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add
         </button>
-        <table class="table table-dark">
+        <table class="table table-dark table-responsive">
             <tr>
                 <th style="color: white; background-color: gold;">id</th>
                 <th style="color: white; background-color: indigo;">prodName</th>
@@ -28,9 +28,40 @@
                 <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.quantity}}</td>
                 <td><button @click="deleteProd(item.prodID)" id="deleteButt">Delete</button></td>
 
-                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="editButt">
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#exampleModal2-' + item.prodID" id="editButt">
                   Edit
                 </button></td>
+<div class="modal fade" :id="'exampleModal2-' + item.prodID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div id="modalBody" class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">EDIT PRODUCT</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+                <p id= "modalP">Product Name</p>
+                <input id="input1" placeholder="prodName" type="text" class="form-control" v-model="prodName" required>
+
+                <p id= "modalP">Quantity</p>
+                <input id="input2" placeholder="quantity" type="number" class="form-control" v-model="quantity" required>
+
+                <p id= "modalP">Amount</p>
+                <input id="input3" placeholder="amount" type="number" class="form-control" v-model="amount" required>
+
+                <p id= "modalP">Category</p>
+                <input id="input4" placeholder="category" type="text" class="form-control" v-model="category" required>
+
+                <p id= "modalP">Product Url</p>
+                <input id="input4" placeholder="prodUrl" type="text" class="form-control" v-model="prodUrl" required>
+      </div>
+      <div class="modal-footer">
+        <button id="closeButt" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button @click="updateProd(item.prodID)" id="saveButt" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
             </tr>   
         </table>
 
@@ -67,10 +98,7 @@
   </div>
 </div>
 
-<!-- Button trigger modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div id="modalBody" class="modal-content">
       <div class="modal-header">
@@ -96,16 +124,24 @@
       </div>
       <div class="modal-footer">
         <button id="closeButt" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button @click="updateProd()" id="saveButt" type="button" class="btn btn-primary">Save changes</button>
+        <button @click="updateProd(item)" id="saveButt" type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<br><br><br>
+
+<userCompView/>
         
     </div>
 </template>
 <script>
+import userCompView from '../components/userCompView.vue'
 export default {
+    components:{
+        userCompView
+    },
     data(){
         return{
         prodName: null,
@@ -132,16 +168,20 @@ export default {
                 prodUrl:this.prodUrl
             }
             this.$store.dispatch('updateProd',edit)
-        }
+        },
+
     },
     computed:{
         getProduct(){
             this.$store.dispatch('getProduct')
-
+        },
+        getUser(){
+            this.$store.dispatch('getUser')
         }
     },
     mounted(){
-        this.getProduct
+        this.getProduct,
+        this.getUser
     }
 }
 </script>
