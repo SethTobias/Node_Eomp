@@ -41,7 +41,6 @@ export default createStore({
     },
     async deleteProd({ commit }, id) {
       await axios.delete(baseUrl + "/product/delete/" + id);
-      window.location.reload();
     },
     async updateProd({ commit }, update) {
       console.log(update);

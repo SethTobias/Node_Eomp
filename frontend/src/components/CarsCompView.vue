@@ -1,5 +1,7 @@
 <template>
-  <div id="mainProd" class="row">
+<input id="input" type="search" placeholder="search" aria-label="search" @click="explore()" v-model="search">
+<button @click="sort()" id="butt2">SORT</button>
+  <div v-if="explore().length>0" id="mainProd" class="row">
     <div id="bodd" v-for="item in $store.state.product" :key="item.prodID" class="col-lg-4">
       <div class="card h-100" style="width: 18rem; margin:10px;">
         <img :src="item.prodUrl" class="card-img-top">
@@ -15,21 +17,65 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    <spinner/>
+  </div>
 </template>
 
 <script>
+import sweet from 'sweetalert'
+import spinner from '../components/spinner.vue'
 export default {
+  components: {
+    spinner,
+  },
+  data() {
+    return {
+      search: ""
+    };
+  },
   methods: {
+    explore() {
+      let item = this.$store.state.product;
+      let typed = this.search;
+      let result = item.filter(s => {
+        return s.prodName.toLowerCase().includes(typed.toLowerCase());
+      });
+      if (result.length === 0) {
+        sweet({
+          title: "Error",
+          text: "Item not found"
+        });
+      }
+      return result;
+    },
+    sort() {
+      let c = this.$store.state.product;
+      if (c) {
+        c.sort((a, b) => a.amount - b.amount);
+      }
+    },
     getSingle(prodID) {
       this.$store.dispatch('getSingle',prodID)
     }
   }
-}
+};
+
 </script>
 
-<style scoped>
+<style>
+
+#input{
+  margin-top: 200px;
+}
+
 #butt{
   background-color: black;
+  color: gold;
+}
+
+#butt2{
+  background-color: indigo;
   color: gold;
 }
 
@@ -44,7 +90,7 @@ export default {
   background-color: indigo;
   color: gold !important;
   box-shadow: indigo 0px 0px 30px;
-  gap: 50px !important;
+  /* gap: 50px !important; */
 }
 
 #mainProd {
@@ -52,7 +98,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   margin: auto;
-  margin-top: 140px;
+  margin-top: 50px;
   margin-left: 90px;
 }
 
