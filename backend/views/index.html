@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* General styling for all elements */
+      * {
+        text-align: center; /* Center-align text */
+        color: blue; /* Set text color to blue */
+      }
+
+      /* Styling for tables and table cells */
+      table,
+      td {
+        border: 2px solid black; /* Set a black border for tables and cells */
+        margin: 0 auto; /* Center-align tables */
+      }
+
+      /* Styling for individual table cells */
+      td {
+        font-size: clamp(
+          1rem,
+          calc(5vw + 0.5rem),
+          1.5rem
+        ); /* Responsive font size using clamp */
+      }
+
+      /* Styling for elements with class 'header' or 'footer' */
+      :is(.header, .footer) {
+        font-size: clamp(
+          1.5rem,
+          calc(10vw + 0.5rem),
+          3rem
+        ); /* Responsive font size for header and footer */
+      }
+
+      /* Media query for screens with width less than 300px */
+      @media screen and (width < 300px) {
+        table {
+          overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td class="header" colspan="3">Static:</td>
+      </tr>
+      <tr>
+        <td>HTTP Methods</td>
+        <td>Path</td>
+        <td>Description</td>
+      </tr>
+      <tbody>
+        <tr>
+          <td>GET</td>
+          <td>/ (Home/Static Page)</td>
+          <td>
+            Path to Static Page detailing what each path is responsible for
+            handling in the routes.
+          </td>
+        </tr>
+
+        <tr>
+          <td class="header" colspan="3">Users:</td>
+        </tr>
+        <tr>
+          <td>HTTP Methods</td>
+          <td>Path</td>
+          <td>Description</td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/user</td>
+          <td>
+            Path is responsible for retrieving all users data within the API.
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/user/:id</td>
+          <td>
+            Path is responsible for retrieving a users data from the API
+            specifically by their userID, specified in the path.
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>/user/add</td>
+          <td>
+            Path is responsible for allowing new user data to be added into the
+            API.
+          </td>
+        </tr>
+        <tr>
+          <td>PATCH/PUT</td>
+          <td>/user/update/:id</td>
+          <td>
+            Path is responsible for allowing data about the user to be altered
+            within the API.
+          </td>
+        </tr>
+        <tr>
+          <td>DELETE</td>
+          <td>/user/delete/:id</td>
+          <td>
+            Path is responsible for allowing data about the user to be deleted
+            from the API.
+          </td>
+        </tr>
+        <tr>
+          <td class="header" colspan="3">Product:</td>
+        </tr>
+        <tr>
+          <td>HTTP Methods</td>
+          <td>Path</td>
+          <td>Description</td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/product</td>
+          <td>
+            >Path is responsible for retrieving all products data within the
+            API.
+          </td>
+        </tr>
+        <tr>
+          <td>GET</td>
+          <td>/product/:id</td>
+          <td>
+            Path is responsible for retrieving a products data from the API
+            specifically by their prodID, specified in the path.
+          </td>
+        </tr>
+        <tr>
+          <td>POST</td>
+          <td>/product/add</td>
+          <td>
+            Path is responsible for allowing new product data to be added into
+            the API.
+          </td>
+        </tr>
+        <tr>
+          <td>PUT/PATCH</td>
+          <td>/product/update/:id</td>
+          <td>
+            Path is responsible for allowing data about the product to be
+            altered within the API.
+          </td>
+        </tr>
+        <tr>
+          <td>DELETE</td>
+          <td>/product/delete/:id</td>
+          <td>
+            Path is responsible for allowing data about the product to be
+            deleted from the API.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

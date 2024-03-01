@@ -1,0 +1,67 @@
+File to store all default data that is to be displayed in the site. 
+____________________________________________________________________
+Product data:
+____________________________________________________________________
+{
+"prodName":"1962 Ferrari 250 GTO Scorpion GTZR Replica",
+"quantity":12,
+"amount":2000000,
+"category":"Vintage",
+"prodUrl":"https://i.ibb.co/YLs17N5/1962-Ferrari-250-GTO-Scorpion-GTZR-Replica.jpg"
+}
+{
+"prodName":"1964 Ford Thunderbird",
+"quantity":1,
+"amount":2300000,
+"category":"Vintage",
+"prodUrl":"https://i.ibb.co/8znZwLP/1964-Ford-Thunderbird.jpg"
+}
+{
+"prodName":"1967 Chevrolet Corvette Convertible",
+"quantity":2,
+"amount":1800000,
+"category":"Vintage",
+"prodUrl":"https://i.ibb.co/ctLP5fc/1967-Chevrolet-Corvette-Convertible.jpg"
+}
+{
+"prodName":"1989 Land Rover Defender",
+"quantity":3,
+"amount":1500000,
+"category":"Exotic SUV",
+"prodUrl":"https://i.ibb.co/7rpp6XY/1989-Land-Rover-Defender.jpg"
+}
+{
+"prodName":"2022 Lamborghini Urus",
+"quantity":4,
+"amount":3200000,
+"category":"Exotic SUV",
+"prodUrl":"https://i.ibb.co/Hn4zy00/2022-Lamborghini-Urus.jpg"
+}
+{
+"prodName":"2022 Mercedes Benz G Class AMG G63",
+"quantity":3,
+"amount":300000,
+"category":"Exotic SUV",
+"prodUrl":"https://i.ibb.co/NVZqGMM/2022-Mercedes-benz-G-Class-AMG-G63.jpg"
+}
+{
+"prodName":"2022 Mclaren 720 S Spider",
+"quantity":5,
+"amount":2600000,
+"category":"Exotic",
+"prodUrl":"https://i.ibb.co/xhSDrtF/2022-Mclaren-720-S-Spider.jpg"
+}
+{
+"prodName":"2023 Audi R8 V1 GT",
+"quantity":4,
+"amount":2800000,
+"category":"Exotic",
+"prodUrl":"https://i.ibb.co/ZxR5qD4/2023-Aud-R8-V1-GT.jpg"
+}
+{
+"prodName":"Lamborghini Aventador LP700 4",
+"quantity":2,
+"amount":3000000,
+"category":"Exotic",
+"prodUrl":"https://i.ibb.co/KGsn4gK/Lamborghini-Aventador-LP700-4.jpg"
+}
