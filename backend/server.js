@@ -33,29 +33,6 @@ app.use(cors());
 app.use(express.json());
 // Defining the use of the cors dependency.
 // Configuration object for CORS (Cross-Origin Resource Sharing)
-// const corsOptions = {
-//   // List of allowed origins that can access your resources
-//   origin: ['http://localhost:8080', 'https://node-eomp-api.onrender.com/'],
-  
-//   // List of allowed HTTP methods for cross-origin requests
-//   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-
-//   // List of allowed headers in the actual request
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-
-// app.use( (req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   res.header("Access-Control-Allow-Methods", "*");
-//   res.header("Access-Control-Request-Methods", "*");
-//   res.header("Access-Control-Allow-Headers", "*");
-//   res.header("Access-Control-Expose-Headers", "Authorization");
-//   next();
-// });
-
-// Applying CORS middleware to the Express app with the specified options
-// app.use(cors(corsOptions));
 
 
 
