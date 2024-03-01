@@ -4,6 +4,7 @@ import aboutView from '../views/AboutView'
 import ContactUsView from '../views/ContactUsView.vue'
 import AdminView from '../views/AdminView.vue'
 import CarsView from '../views/CarsView.vue'
+import SingleView from '../views/SingleView.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/cars',
     name: 'cars',
     component: CarsView
+  },
+  {
+    path: '/cars/:prodID',
+    name: 'single',
+    component: SingleView
   }
 ]
 

@@ -1,16 +1,12 @@
 <template>
   <div id="mainProd" class="row">
-    <div id="bodd" v-for="item in $store.state.product" :key="item.prodID" class="col-lg-4">
+    <div id="bodd" v-for="item in $store.state.singleProd" :key="item.prodID" class="col-lg-4">
       <div class="card h-100" style="width: 18rem; margin:10px;">
         <img :src="item.prodUrl" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title" style="color: yellow; background-color: black;">{{item.prodName}}</h5>
           <p class="card-text" style="font-size: 17px; font-weight: bolder;"><i>{{item.amount}}</i></p>
           <p class="card-text" style="font-size: 17px;">{{item.category}}</p>
-          <button id="butt" class="btn btn-primary" >BUY NOW</button>
-          <router-link class="btn" :to="{ name: 'single', params: {prodID: item.prodID} }">
-            View More
-          </router-link>
         </div>
       </div>
     </div>
@@ -19,15 +15,18 @@
 
 <script>
 export default {
-  methods: {
-    getSingle(prodID) {
-      this.$store.dispatch('getSingle',prodID)
+    computed: {
+        getSingle() {
+            this.$store.dispatch('getSingle',this.$route.params.prodID)
+        }
+    },
+    mounted() {
+        this.getSingle
     }
-  }
 }
 </script>
 
-<style scoped>
+<style>
 #butt{
   background-color: black;
   color: gold;

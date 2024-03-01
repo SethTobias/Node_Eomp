@@ -1,73 +1,78 @@
-import { createStore } from 'vuex'
-import axios from 'axios'
+import { createStore } from "vuex";
+import axios from "axios";
 
- let baseUrl = 'https://node-eomp-api.onrender.com'
+let baseUrl = "https://node-eomp-api.onrender.com";
 export default createStore({
   state: {
-    product:[],
-    user: []
+    product: [],
+    user: [],
+    singleProd: [],
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
-    setProducts(state, data){
+    setProducts(state, data) {
       state.product = data;
     },
-    setUsers(state,data){
+    setUsers(state, data) {
       state.user = data;
+    },
+    setSingle(state,data) {
+      state.singleProd = data
     }
   },
   actions: {
-    async getProduct({commit}){
-      try{
-        const {data}= await axios.get(baseUrl+'/product');
+    async getProduct({ commit }) {
+      try {
+        const { data } = await axios.get(baseUrl + "/product");
         console.log(data);
-        commit("setProducts",data);
-      } catch(error){
-        console.error('Error fetching products',error)
+        commit("setProducts", data);
+      } catch (error) {
+        console.error("Error fetching products", error);
       }
     },
-    async addProd({commit},newProduct){
-      const {data} = await axios.post(baseUrl+'/product/add',newProduct);
+    async addProd({ commit }, newProduct) {
+      const { data } = await axios.post(baseUrl + "/product/add", newProduct);
       window.location.reload();
       console.log(data);
     },
-    async deleteProd({commit},id){
-      await axios.delete(baseUrl+ '/product/delete/' +id);
+    async getSingle({ commit }, prodID) {
+      const { data } = await axios.get(baseUrl + "/product/" + prodID);
+      commit("setSingle", data);
+    },
+    async deleteProd({ commit }, id) {
+      await axios.delete(baseUrl + "/product/delete/" + id);
       window.location.reload();
     },
-    async updateProd({commit},update){
+    async updateProd({ commit }, update) {
       console.log(update);
-      await axios.patch(baseUrl+'/product/update/'+update.id, update)
+      await axios.patch(baseUrl + "/product/update/" + update.id, update);
       window.location.reload();
     },
 
-    async getUser({commit}){
+    async getUser({ commit }) {
       try {
-        const {data} = await axios.get(baseUrl+'/user');
+        const { data } = await axios.get(baseUrl + "/user");
         console.log(data);
-        commit("setUsers",data);
-      } catch(error){
-        console.error('error getting user')
+        commit("setUsers", data);
+      } catch (error) {
+        console.error("error getting user");
       }
-
     },
 
-    async deleteUser({commit},id){
-      await axios.delete(baseUrl+'/user/delete/'+id)
-      window.location.reload()
+    async deleteUser({ commit }, id) {
+      await axios.delete(baseUrl + "/user/delete/" + id);
+      window.location.reload();
     },
 
-    async addUser({commit}, newUser){
-      await axios.post(baseUrl+'/user/add',newUser);
-      window.location.reload()
-      console.log(data)
+    async addUser({ commit }, newUser) {
+      await axios.post(baseUrl + "/user/add", newUser);
+      window.location.reload();
+      console.log(data);
     },
-    async updateUser({commit},update){
-      await axios.patch(baseUrl+'/user/update/'+update.id,update)
-      window.location.reload()
-    }
+    async updateUser({ commit }, update) {
+      await axios.patch(baseUrl + "/user/update/" + update.id, update);
+      window.location.reload();
+    },
   },
-  modules: {
-  }
-})
+  modules: {},
+});
